@@ -667,10 +667,20 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>'
 
 // ---------- sound (synthesized, no files) ----------
 let AC = null, sfxOn = true;
+// Safari suspends (or "interrupts") the audio context when the tab is hidden, e.g. after
+// opening a project link in a new tab, and it only restarts from a user gesture.
+function wakeAudio(){
+  if (AC && AC.state !== 'running') AC.resume().catch(() => {});
+}
+['pointerdown', 'keydown', 'touchend'].forEach(ev => addEventListener(ev, wakeAudio, { capture: true, passive: true }));
+addEventListener('pageshow', wakeAudio);
+addEventListener('focus', wakeAudio);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) wakeAudio(); });
 function sfx(kind){
   if (!sfxOn) return;
   try {
     AC ||= new (window.AudioContext || window.webkitAudioContext)();
+    if (AC.state !== 'running') AC.resume().catch(() => {});
     const t = AC.currentTime;
     const tone = (f, d, at = 0, wave = 'square', vol = .05, f2) => {
       const o = AC.createOscillator(), g = AC.createGain();
