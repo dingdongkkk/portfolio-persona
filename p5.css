@@ -1,0 +1,390 @@
+/* Persona 5 alignment pass.
+ * Loaded last. Pulls the content scenes back to the game's language: flat red / black / white,
+ * skewed tag labels, hard offset shadows, bold condensed type, and no tiny grey microcopy.
+ * Layout (positions, grids, scrolling) is left to style.css and polish.css. */
+
+/* ---------- shared: section labels become skewed P5 tags ---------- */
+.scene-title small,
+.code-profile>small{
+  display:block;width:max-content;max-width:100%;
+  background:var(--red);color:#fff;opacity:1;
+  font:12px/1.2 'Archivo Black',sans-serif;letter-spacing:.12em;
+  padding:5px 12px 4px;margin-bottom:14px;
+  transform:skewX(-12deg);box-shadow:4px 4px 0 #000;
+}
+.hint{font-size:11px}
+/* the tag is taller than the old microcopy, so lift desktop titles to keep their clearance */
+@media (min-width:761px){.scene-title{top:12.5vh}.scene-title small{margin-bottom:10px}}
+.menu-status small{font-size:9px;opacity:.75}
+
+/* ---------- start ---------- */
+.jump-work{font-size:11px;color:#fff;letter-spacing:.08em}
+.jump-work span{font:14px 'Archivo Black',sans-serif;letter-spacing:.04em;text-decoration:none;
+  display:inline-block;background:#000;color:#fff;padding:6px 12px;margin-top:8px;transform:skewX(-10deg);box-shadow:4px 4px 0 #fff}
+.jump-work:hover span{background:#fff;color:#000;box-shadow:4px 4px 0 #000}
+.start-note{font-size:10px}
+
+/* ---------- intro / phone ---------- */
+.dialog::after{font-size:10px;opacity:.85}
+.phone h2{font-family:'Anton',sans-serif;background:#000;color:#fff;display:inline-block;padding:4px 14px 2px;transform:rotate(-4deg) skewX(-8deg);box-shadow:5px 5px 0 #fff}
+.phone-note small{font-size:10px}
+
+/* ---------- about: stat tiles, tag headers, P5 skill tags ---------- */
+.profile-facts{border-bottom:0;gap:16px;padding:0 0 8px}
+.profile-facts>div{background:#fff;color:#000;padding:10px 14px 10px;transform:skewX(-10deg);box-shadow:5px 5px 0 var(--red)}
+.profile-facts>div>*{transform:skewX(10deg)}
+.profile-facts b{color:#000}
+.profile-facts b span{color:var(--red)}
+.profile-facts small{color:#000;font:11px 'Archivo Black',sans-serif;letter-spacing:.06em;margin-top:6px}
+.panel{border-left:0;padding-left:0}
+.panel h3{display:block;width:max-content;background:#fff;color:#000;font:12px 'Archivo Black',sans-serif;letter-spacing:.14em;
+  padding:4px 12px 3px;margin-bottom:10px;transform:skewX(-12deg);box-shadow:3px 3px 0 var(--red)}
+.panel,.panel p{color:#f2f2f2}
+.skills{gap:8px}
+.skills span{background:#fff;color:#000;border:0;font:12px 'Archivo Black',sans-serif;letter-spacing:.02em;
+  padding:4px 10px 3px;transform:rotate(var(--r,0deg)) skewX(-10deg);box-shadow:3px 3px 0 #000;transition:transform .15s,background .15s}
+.skills span:nth-child(3n){background:var(--red);color:#fff}
+.skills span:hover{background:#000;color:#fff;outline:2px solid #fff;transform:scale(1.08) skewX(-10deg)}
+.idcard{border:3px solid #fff}
+.idcard small{font-size:10px;opacity:.85}
+.idcard p span{font-size:12px;color:#ddd}
+.profile-email{font-size:12px;color:#eee}
+.dossier-label{font:11px 'Archivo Black',sans-serif;letter-spacing:.14em}
+
+/* ---------- projects: black mission rows, red selection, no overlap ---------- */
+#proj .card{background:#000;color:#fff;border:3px solid #fff}
+#proj .card small{font:10px 'Archivo Black',sans-serif;letter-spacing:.08em;opacity:1;color:var(--red)}
+#proj .card b{color:#fff}
+#proj .card:hover:not(.sel){background:#1a1a1a}
+#proj .card.sel{background:var(--red);border-color:#fff;box-shadow:6px 6px 0 #fff}
+#proj .card.sel small{color:#fff}
+.mission-index{top:17vh;bottom:auto;left:auto;right:8vw;color:#fff}
+.mission-index b{color:var(--red)}
+.mission-index span{font-size:10px}
+.mission-art>span{font-size:10px;background:var(--red)}
+.mission-fact span{font-size:9px}
+.detail .badge{font-size:11px;color:var(--red)}
+.detail .tech span{background:#000;color:#fff;border:0;font:11px 'Archivo Black',sans-serif;letter-spacing:.02em;padding:4px 9px 3px;transform:skewX(-10deg)}
+.detail .mission-actions a{font:13px 'Archivo Black',sans-serif;letter-spacing:.04em;transform:skewX(-10deg);box-shadow:4px 4px 0 #000}
+.detail .mission-actions a:hover{transform:skewX(-10deg) translateY(-2px)}
+
+/* ---------- experience: white save slots, red active slot ---------- */
+.slot{background:#fff;color:#000;border:0;border-left:8px solid #000;box-shadow:5px 5px 0 #000}
+.slot .num{background:#000;color:#fff;padding:2px 10px}
+.slot .role{color:#000}
+.slot .when{font-size:12px}
+.slot .when strong{color:#000;font-weight:700}
+.slot .when span{color:#444}
+.slot.sel{background:var(--red);color:#fff;border-left-color:#fff;box-shadow:6px 6px 0 #fff}
+.slot.sel .num{background:#fff;color:var(--red)}
+.slot.sel .role{color:#fff}
+.slot.sel .when strong,.slot.sel .when span{color:#fff}
+.slot .note{color:#fff}
+.slot.sel .disc{border-color:#fff}
+
+/* ---------- contact: readable handles, tag subtitle ---------- */
+#socials .shop>span{display:block;width:max-content;max-width:100%;font:12px 'Archivo Black',sans-serif;letter-spacing:.1em;
+  margin-top:16px;background:#fff;color:#000;padding:5px 12px 4px;transform:skewX(-10deg);box-shadow:4px 4px 0 var(--red)}
+.social-list a{align-items:baseline}
+#socials .shop{z-index:3}
+@media (min-width:761px){.ccard{top:41vh}}
+.social-list a span{line-height:1.1}
+.social-list a span:last-child{font:13px 'Archivo Black',sans-serif;letter-spacing:.02em}
+.contact-footer>span:first-child{font:11px 'Archivo Black',sans-serif;letter-spacing:.06em}
+.contact-footer button{font:13px 'Archivo Black',sans-serif;letter-spacing:.08em}
+#copyStatus{font-size:12px;font-weight:700}
+
+/* ---------- source code ---------- */
+.code-profile p{font-size:15px;color:#e8e8e8}
+.repo-stats span{font:11px 'Archivo Black',sans-serif;letter-spacing:.1em;color:#fff}
+.code-profile a.gh{box-shadow:6px 6px 0 var(--red)}
+.code-action{font-size:11px;color:#fff}
+#github .sub{font-size:11px;opacity:.7}
+
+/* ---------- phones ---------- */
+@media (max-width:760px){
+  /* scrolling scenes pass under a solid fade, not straight into the fixed HUD and Back button */
+  body:is([data-scene=about],[data-scene=proj],[data-scene=exp],[data-scene=socials])::before,
+  body:is([data-scene=about],[data-scene=proj],[data-scene=exp],[data-scene=socials])::after{
+    content:'';position:fixed;left:0;right:0;z-index:39;pointer-events:none}
+  body:is([data-scene=about],[data-scene=proj],[data-scene=exp],[data-scene=socials])::before{top:0;height:78px;background:linear-gradient(#080808 62%,#08080800)}
+  body[data-scene=socials]::after{display:none}
+  body:is([data-scene=about],[data-scene=proj],[data-scene=exp],[data-scene=socials])::after{bottom:0;height:78px;background:linear-gradient(#08080800,#080808 55%)}
+  .scene-title small,.code-profile>small{font-size:10px;padding:4px 10px 3px}
+  .profile-facts{gap:10px}
+  .profile-facts>div{padding:8px 8px}
+  .profile-facts small{font-size:9px}
+  .panel h3{font-size:11px}
+  .skills span{font-size:12px}
+  #proj .card small{font-size:9px;letter-spacing:.03em}
+  .mission-fact span{font-size:8px}
+  .detail .badge{font-size:10px}
+  .slot .when{font-size:12px}
+  #socials .shop>span{font-size:10px}
+  .social-list a span:last-child{font-size:11px}
+  .contact-footer>span:first-child{font-size:10px}
+  .code-action{font-size:10px}
+  .jump-work{font-size:10px}
+  .jump-work span{font-size:12px}
+  .start-note{font-size:9px}
+}
+
+/* ---------- COMMAND card: pieces land sooner so the shorter hold still reads ---------- */
+#cmd .label{animation-delay:.12s}
+#cmd .word{animation-delay:.24s}
+
+/* ---------- introduction: layered P5 entrance ----------
+ * Everything waits for #intro.on (added once the wipe has cleared), then:
+ * slash sweep + portrait reveal → speed lines → name slams in letter by letter →
+ * title tag wipes in → dialogue box swings up. Ambient loops keep the scene alive. */
+#intro{background:#e00019}
+/* the key art is full-bleed, so the ambient layers sit above it (name and dialogue sit above them) */
+.intro-halftone,.intro-star,.intro-shards{z-index:1}
+#intro .intro-name,#intro .intro-sub{z-index:2}
+.intro-halftone{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(#00000030 1.7px,transparent 2.2px) 0 0/15px 15px;
+  -webkit-mask-image:linear-gradient(118deg,#000 0 28%,transparent 60%);mask-image:linear-gradient(118deg,#000 0 28%,transparent 60%);
+  animation:introDots 9s linear infinite}
+@keyframes introDots{to{background-position:150px 150px}}
+.intro-star{inset:-20% 35% -20% -30%;opacity:0;pointer-events:none;
+  -webkit-mask-image:radial-gradient(circle at 45% 42%,#000 0,transparent 62%);mask-image:radial-gradient(circle at 45% 42%,#000 0,transparent 62%)}
+#intro.on .intro-star{animation:introStarIn 1s .2s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes introStarIn{from{opacity:0;scale:1.7}to{opacity:.14;scale:1}}
+
+.intro-shards{position:absolute;inset:0;pointer-events:none}
+.intro-shards i{position:absolute;display:block;opacity:0;background:#000;clip-path:polygon(0 0,100% 34%,24% 100%);pointer-events:none}
+.intro-shards i:nth-child(1){display:none}   /* its spot is now between the two choices */
+.intro-shards i:nth-child(2){left:36vw;top:14vh;width:44px;height:36px;background:#fff;--o:.9}
+.intro-shards i:nth-child(3){left:30vw;top:5vh;width:60px;height:44px}
+.intro-shards i:nth-child(4){left:22vw;top:9vh;width:30px;height:24px}
+.intro-shards i:nth-child(5){left:2.5vw;top:38vh;width:34px;height:28px;background:#fff;--o:.8}
+.intro-shards i:nth-child(6){left:48vw;top:40vh;width:26px;height:22px;background:#fff;--o:.7}
+#intro.on .intro-shards i{animation:shardPop .5s calc(.5s + var(--n,0) * 70ms) cubic-bezier(.3,1.6,.4,1) forwards,shardDrift 6s calc(1s + var(--n,0) * .6s) ease-in-out infinite}
+.intro-shards i:nth-child(2){--n:1}.intro-shards i:nth-child(3){--n:2}.intro-shards i:nth-child(4){--n:3}.intro-shards i:nth-child(5){--n:4}.intro-shards i:nth-child(6){--n:5}
+@keyframes shardPop{from{opacity:0;scale:0;rotate:-90deg}to{opacity:var(--o,.85);scale:1;rotate:0deg}}
+@keyframes shardDrift{0%,100%{translate:0 0}50%{translate:10px -16px}}
+
+/* portrait: revealed behind a sweeping slash, then drifts; the mouse adds a little parallax */
+#intro .illustrated-portrait{inset:-2.5%;width:auto;height:auto;transition:none;
+  transform:translate3d(calc(var(--mx,0) * -14px),calc(var(--my,0) * -9px),0);
+  clip-path:polygon(118% 0,118% 0,108% 100%,108% 100%)}
+#intro.on .illustrated-portrait{transform:translate3d(calc(var(--mx,0) * -14px),calc(var(--my,0) * -9px),0);animation:portraitReveal .85s cubic-bezier(.16,1,.3,1) forwards,portraitDrift 16s .9s ease-in-out infinite alternate}
+@keyframes portraitReveal{from{clip-path:polygon(118% 0,118% 0,108% 100%,108% 100%);scale:1.16}to{clip-path:polygon(-20% 0,118% 0,108% 100%,-30% 100%);scale:1}}
+@keyframes portraitDrift{from{scale:1;translate:0 0}to{scale:1.045;translate:-1% .4%}}
+#intro .illustrated-portrait::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,#ffffff45 49%,transparent 56%);translate:-110% 0}
+#intro.on .illustrated-portrait::after{animation:portraitGlint 7s 1.8s ease-in-out infinite}
+@keyframes portraitGlint{0%{translate:-110% 0}22%,100%{translate:110% 0}}
+.intro-slash{position:absolute;top:-15%;bottom:-15%;left:100%;width:16vw;background:#fff;box-shadow:-3vw 0 0 #000;
+  transform:skewX(-10deg);opacity:0;pointer-events:none}
+#intro.on .intro-slash{animation:introSlash .85s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes introSlash{0%{opacity:1;translate:0 0}75%{opacity:1}100%{opacity:0;translate:-150vw 0}}
+#intro .intro-speed{animation:none;opacity:0}
+#intro.on .intro-speed{animation:speed .7s .15s ease-out both}
+
+/* name: letters slam in one by one, then a ripple runs through them every few seconds */
+#intro .intro-name span{display:inline-block;opacity:0}
+#intro.on .intro-name span{animation:nameSlam .5s calc(.4s + var(--i) * 60ms) cubic-bezier(.3,1.7,.4,1) forwards,nameRipple 4s calc(1.6s + var(--i) * 80ms) ease-in-out infinite}
+@keyframes nameSlam{from{opacity:0;scale:2.8;translate:0 -50px;rotate:-28deg}to{opacity:1;scale:1;translate:0 0;rotate:0deg}}
+@keyframes nameRipple{0%,82%,100%{translate:0 0}88%{translate:0 -9px}94%{translate:0 2px}}
+#intro .intro-sub{clip-path:inset(0 100% 0 0)}
+#intro.on .intro-sub{animation:subWipe .45s .95s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes subWipe{to{clip-path:inset(0 0 0 0)}}
+
+/* dialogue box swings up into place; its name tag pops after */
+#intro .dialog{transition:none;transform:none;opacity:0}
+#intro.on .dialog{animation:dialogIn .65s .75s cubic-bezier(.2,1.25,.3,1) forwards}
+@keyframes dialogIn{from{opacity:0;transform:translate(-18vw,30vh) rotate(-14deg)}to{opacity:1;transform:none}}
+#intro.on .dialog .tag{animation:tagPop .45s 1.2s cubic-bezier(.3,1.8,.4,1) both}
+@keyframes tagPop{from{scale:0;rotate:-35deg}to{scale:1;rotate:0deg}}
+.dialog::after{width:max-content;margin:14px 6px 0 auto;background:#000;color:#fff;padding:4px 10px 3px;opacity:1;
+  font:10px 'Archivo Black',sans-serif;letter-spacing:.12em}
+
+@media (max-width:760px){
+  /* on phones the portrait fills the screen, so ambient layers would sit on the face */
+  .intro-star,.intro-halftone{display:none}
+  .intro-shards i:not(:nth-child(2)){display:none}
+  .intro-slash{width:30vw}
+  .dialog::after{font-size:9px}
+}
+
+/* ---------- name cut-in after the introduction ----------
+ * Even tile spacing on a single centred line, a red slash behind the name,
+ * a readable tag underneath, and the scene behind dimmed so the band reads first. */
+#cutin::before{content:'';position:absolute;inset:0;background:#000000a6;animation:cutDim .25s ease-out both}
+@keyframes cutDim{from{opacity:0}}
+#cutin .band{top:29vh;height:40vh}
+#cutin .txt{top:44%;display:flex;justify-content:center;align-items:center;line-height:1;
+  font-size:clamp(46px,8.2vw,128px)}
+#cutin .rn-word{position:relative;display:inline-flex;align-items:center;gap:.07em}
+#cutin .rn-word::before{content:'';position:absolute;left:-.45em;right:-.45em;top:50%;height:.62em;background:var(--red);
+  transform:translateY(-50%) skewX(-22deg);z-index:-1}
+#cutin .rn{padding:.07em .15em .03em;margin:0;line-height:.95;box-shadow:.05em .05em 0 #000}
+#cutin .sub{left:calc(50% - 6vw);right:auto;bottom:9%;translate:-50% 0;
+  background:#fff;color:#000;font:clamp(11px,1.15vw,16px) 'Archivo Black',sans-serif;letter-spacing:.28em;
+  padding:6px 18px 5px 20px;white-space:nowrap;transform:skewX(-12deg);box-shadow:5px 5px 0 var(--red);
+  animation:cutSub .45s .55s cubic-bezier(.2,1.3,.3,1) both}
+@keyframes cutTxtPhone{0%{transform:translate(60vw,-50%)}60%{transform:translate(-2vw,-50%)}100%{transform:translate(0,-50%)}}
+@keyframes cutSub{from{opacity:0;translate:-150% 0}to{opacity:1;translate:-50% 0}}
+@media (max-width:760px){
+  #cutin .band{top:33vh;height:30vh}
+  /* narrower name and no desktop offset, so every tile stays on screen */
+  #cutin .txt{font-size:clamp(30px,9.4vw,44px);animation-name:cutTxtPhone}
+  #cutin .sub{left:50%;bottom:10%;font-size:10px;letter-spacing:.22em}
+}
+
+/* ---------- COMMAND transition (menu → section) ----------
+ * Red panel with a giant outlined section number, a big section name and a one-line brief;
+ * a crisp black/white star field between the slash and the character (no desaturated grey). */
+#cmd::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(#0000002e 1.7px,transparent 2.2px) 0 0/15px 15px;
+  -webkit-mask-image:linear-gradient(100deg,#000 0 30%,transparent 48%);mask-image:linear-gradient(100deg,#000 0 30%,transparent 48%)}
+#cmd .starburst{opacity:.95}
+#cmd .command-art{clip-path:polygon(60% 0,100% 0,100% 100%,44% 100%);background-position:right center;
+  animation:cmdArt .5s .05s cubic-bezier(.16,1,.3,1) both}
+@keyframes cmdArt{from{translate:18vw 0;opacity:0}to{translate:0 0;opacity:1}}
+#cmd .slash{z-index:1}
+#cmd .cmd-speed{z-index:1;animation:speed .6s .05s ease-out both}
+#cmd .cmd-num{position:absolute;left:2vw;top:4vh;z-index:1;pointer-events:none;
+  font:clamp(150px,24vw,360px)/.8 'Anton',sans-serif;color:transparent;-webkit-text-stroke:3px #fff;opacity:.85;
+  transform:rotate(-8deg);animation:cmdNum .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes cmdNum{from{translate:-30vw 0;opacity:0}to{translate:0 0;opacity:.85}}
+#cmd .cmd-copy{position:absolute;left:0;top:40%;z-index:3;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+#cmd .label{position:relative;top:auto;left:auto;font-size:clamp(40px,5.6vw,88px);line-height:1;letter-spacing:-.01em;
+  padding:10px 34px 8px 7vw;box-shadow:8px 8px 0 #fff}
+#cmd .cmd-desc{margin-left:7vw;background:#fff;color:#000;font:clamp(12px,1.2vw,17px)/1.3 'Archivo Black',sans-serif;letter-spacing:.04em;
+  padding:7px 14px 6px;transform:rotate(-5deg) skewX(-10deg);box-shadow:5px 5px 0 #000;max-width:min(520px,60vw);
+  animation:cmdDesc .4s .3s cubic-bezier(.2,1.3,.3,1) both}
+#cmd .cmd-desc:empty{display:none}
+@keyframes cmdDesc{from{opacity:0;translate:-40px 0}to{opacity:1;translate:0 0}}
+#cmd .word{left:5vw;bottom:7vh;font-size:clamp(44px,6.5vw,96px)}
+@media (max-width:760px){
+  #cmd .command-art{clip-path:polygon(58% 0,100% 0,100% 100%,30% 100%)}
+  #cmd .cmd-num{font-size:44vw;top:10vh;-webkit-text-stroke:2px #fff}
+  #cmd .cmd-copy{top:42%}
+  #cmd .label{font-size:10vw;padding:8px 20px 6px 6vw;box-shadow:5px 5px 0 #fff}
+  #cmd .cmd-desc{margin-left:6vw;font-size:11px;max-width:80vw}
+  #cmd .word{font-size:12vw;bottom:9vh}
+}
+
+/* ---------- arrival: Get in touch + GitHub ----------
+ * These scenes used to be fully drawn before the wipe had cleared (GitHub had no entrance at all),
+ * so they felt like they "just loaded". Stagger them in after the wipe, like the other sections. */
+#socials .blob{animation:arrivePanel .6s .2s cubic-bezier(.16,1,.3,1) both}
+#socials .stripe{animation:arriveStripe .6s .25s cubic-bezier(.16,1,.3,1) both,stripeMove 4s linear infinite}
+@keyframes arrivePanel{from{translate:-110% 0}}
+@keyframes arriveStripe{from{translate:120% 0}}
+#socials .shop{animation-delay:.4s}
+#socials .shop>span{animation:arriveTag .45s .75s cubic-bezier(.2,1.3,.3,1) both}
+@keyframes arriveTag{from{opacity:0;translate:-60px 0}}
+.ccard .inner{animation-delay:.45s,1.5s}
+#socials .social-list a{animation:arriveRow .55s cubic-bezier(.2,1.2,.3,1) both}
+#socials .social-list a:nth-child(1){animation-delay:.55s}
+#socials .social-list a:nth-child(2){animation-delay:.65s}
+#socials .social-list a:nth-child(3){animation-delay:.75s}
+#socials .social-list a:nth-child(4){animation-delay:.85s}
+@keyframes arriveRow{from{opacity:0;translate:55vw 0;rotate:10deg}}
+.contact-footer{animation:arriveUp .45s 1.05s ease-out both}
+@keyframes arriveUp{from{opacity:0;translate:0 24px}}
+
+#github .code-profile>small{animation:arriveTag .45s .35s cubic-bezier(.2,1.3,.3,1) both}
+#github .code-profile h2{animation:arriveSlam .5s .45s cubic-bezier(.3,1.5,.4,1) both}
+@keyframes arriveSlam{from{opacity:0;scale:2.2;translate:0 -30px}}
+#github .code-profile p{animation:arriveUp .45s .75s ease-out both}
+#github .repo-stats{animation:arriveTag .45s .85s cubic-bezier(.2,1.3,.3,1) both}
+#github .code-profile a.gh{animation:arrivePop .5s .95s cubic-bezier(.3,1.7,.4,1) both}
+@keyframes arrivePop{from{opacity:0;scale:.3;rotate:-12deg}}
+#github .code-action{animation:arriveUp .4s 1.15s ease-out both}
+#github .code-art{animation:arriveArt .7s .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes arriveArt{from{opacity:0;translate:35vw 0;rotate:25deg}}
+#github .sub{animation:arriveUp .4s 1.3s ease-out both}
+
+/* ---------- layout: start screen + dialogue (declutter) ---------- */
+/* Start: the copy column lives between the edition line and the footer and centres itself,
+ * so nothing can run into the footer; title lines get real leading; the two actions share a row. */
+.start-actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.start-actions .start-button,.start-actions .jump-work{margin:0}
+.start-actions .jump-work{transform:rotate(-4deg)}
+.hero-caption{transform-origin:left center}
+@media (min-width:761px){
+  .hero-copy{top:10vh;bottom:calc(52px + 5vh);width:min(50vw,760px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+  .eyebrow{transform:none;margin:0 0 3.2vh}
+  .hero-title{font-size:min(9.2vw,14.2vh);line-height:.98}
+  .hero-caption{margin:4.4vh 0 0 1.6vw}
+  .start-actions{margin:4.2vh 0 0 1vw}
+  .start-note{margin:3.4vh 0 0 1vw;opacity:.85}
+}
+@media (max-width:760px){
+  .hero-title{line-height:.98}
+  .start-actions{flex-direction:column;align-items:flex-start;gap:22px;margin-top:30px}
+  .start-actions .jump-work{transform:none}
+}
+
+/* Dialogue: the hint tag sits outside the box's flow, so the ▼ "next" arrow stays on the box */
+.dialog::after{position:absolute;left:26px;top:100%;margin:16px 0 0}
+/* Choices: beside the character on desktop (as in P5), anchored above the dialogue on phones */
+/* Choices: "Wanna know more…" on the left, "Nothing" on the right, in a row above the dialogue box */
+@media (min-width:761px){
+  .choices{left:7vw;right:auto;top:auto;bottom:calc(12vh + 225px);width:min(680px,65vw);
+    flex-direction:row;justify-content:space-between;align-items:center}
+}
+@media (max-width:760px){
+  .choices{left:6vw;right:6vw;top:auto;bottom:calc(10vh + 240px);align-items:stretch}
+  .choices button:first-child{align-self:flex-start}
+  .choices button:last-child{align-self:flex-end}
+}
+
+/* ---------- GitHub transition: "git clone" terminal → ACCESS GRANTED ---------- */
+#gitx{position:fixed;inset:0;z-index:70;display:none;background:#0a0a0c;overflow:hidden}
+#gitx.on{display:block;animation:gxIn .35s cubic-bezier(.16,1,.3,1) both}
+@keyframes gxIn{from{clip-path:polygon(0 0,0 0,-30% 100%,-30% 100%)}to{clip-path:polygon(0 0,130% 0,100% 100%,-30% 100%)}}
+#gitx::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(112deg,transparent 0 36%,#fff 36% 37.2%,var(--red) 37.2% 60%,#fff 60% 61.2%,transparent 61.2%);
+  animation:gxBand .45s .05s cubic-bezier(.16,1,.3,1) both}
+@keyframes gxBand{from{translate:-100% 0}}
+#gitx::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#ffffff0a 0 2px,transparent 2px 4px)}
+.gx-rain{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.gx-rain span{position:absolute;top:0;font:13px/1.25 ui-monospace,Menlo,monospace;color:var(--red);opacity:.4;text-align:center;animation:gxRain linear infinite}
+@keyframes gxRain{from{translate:0 -100%}to{translate:0 100vh}}
+.gx-brace{position:absolute;top:50%;z-index:1;font:clamp(180px,44vh,440px)/1 'Anton',sans-serif;color:#fff;text-shadow:10px 10px 0 #000;pointer-events:none}
+.gx-l{left:5vw;translate:0 -55%;rotate:-8deg;animation:gxBraceL .5s .05s cubic-bezier(.16,1,.3,1) both}
+.gx-r{right:5vw;translate:0 -45%;rotate:-8deg;animation:gxBraceR .5s .05s cubic-bezier(.16,1,.3,1) both}
+@keyframes gxBraceL{from{opacity:0;translate:-40vw -55%}}
+@keyframes gxBraceR{from{opacity:0;translate:40vw -45%}}
+.gx-label{position:absolute;left:6vw;top:10vh;z-index:2;background:var(--red);color:#fff;font:13px 'Archivo Black',sans-serif;letter-spacing:.14em;
+  padding:6px 14px 5px;transform:skewX(-12deg) rotate(-4deg);box-shadow:4px 4px 0 #fff;animation:arriveTag .4s .15s cubic-bezier(.2,1.3,.3,1) both}
+.gx-term{position:absolute;left:50%;top:50%;z-index:3;width:min(660px,88vw);translate:-50% -50%;rotate:-3deg;
+  background:#0a0a0c;border:3px solid #fff;box-shadow:12px 12px 0 var(--red);transition:filter .25s;
+  animation:gxTerm .45s .08s cubic-bezier(.2,1.3,.3,1) both}
+@keyframes gxTerm{from{opacity:0;scale:.55;rotate:-16deg}}
+.gx-bar{display:flex;gap:7px;align-items:center;background:#fff;color:#000;padding:8px 12px;font:12px 'Archivo Black',sans-serif;letter-spacing:.08em}
+.gx-bar i{width:11px;height:11px;border-radius:50%;background:#000}
+.gx-bar i:first-child{background:var(--red)}
+.gx-bar span{margin-left:10px}
+.gx-body{padding:18px 20px 6px;min-height:150px;font:clamp(12px,1.2vw,15px)/1.7 ui-monospace,Menlo,monospace;color:#d6d6d6;overflow-wrap:anywhere}
+.gx-cmd{color:#fff}
+.gx-cmd em{color:var(--red);font-style:normal;font-weight:700}
+.gx-caret{display:inline-block;width:.55em;height:1.05em;background:#fff;vertical-align:-.18em;margin-left:3px;animation:blink2 .8s steps(1) infinite}
+.gx-out{color:#a8a8b0;animation:arriveUp .2s ease-out both}
+.gx-out::before{content:'› ';color:var(--red)}
+.gx-progress{display:flex;align-items:center;gap:12px;padding:6px 20px 18px;font:12px 'Archivo Black',sans-serif;color:#fff}
+.gx-track{flex:1;height:12px;border:2px solid #fff;transform:skewX(-20deg)}
+.gx-track b{display:block;height:100%;width:0;background:var(--red)}
+#gxPct{min-width:4ch;text-align:right}
+.gx-stamp{position:absolute;left:50%;top:50%;z-index:5;translate:-50% -50%;font-size:clamp(40px,7vw,108px);white-space:nowrap;opacity:0;pointer-events:none}
+#gitx.granted .gx-stamp{animation:gxStamp .38s cubic-bezier(.3,1.6,.4,1) both}
+@keyframes gxStamp{from{opacity:0;scale:2.6;rotate:-32deg}to{opacity:1;scale:1;rotate:-9deg}}
+#gitx.granted .gx-term{filter:brightness(.45)}
+@media (max-width:760px){
+  .gx-brace{font-size:26vh;opacity:.55}
+  .gx-l{left:-4vw}.gx-r{right:-4vw}
+  .gx-label{left:6vw;top:13vh;font-size:11px}
+  .gx-body{min-height:170px}
+  .gx-stamp{font-size:12vw;white-space:normal;width:92vw;text-align:center;line-height:1.15}
+}
+
+/* GitHub link hover: red plate, white text (was red text on red) */
+#github .code-profile a.gh:hover,#github .code-profile a.gh:focus-visible{background:var(--red);color:#fff;box-shadow:6px 6px 0 #fff}
+/* GitHub transition exit: the terminal screen slashes off to the right, revealing the page */
+#gitx.on.out{animation:gxOut .46s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes gxOut{from{clip-path:polygon(0 0,130% 0,100% 100%,-30% 100%)}to{clip-path:polygon(130% 0,130% 0,100% 100%,100% 100%)}}

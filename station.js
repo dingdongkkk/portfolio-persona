@@ -15,13 +15,13 @@
   const clamp = (x, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, x));
   const ease = x => { x = clamp(x); return x * x * (3 - 2 * x); };
   const crowd = [
-    { x: -.38, z: 3.5, size: 2.12, pose: 'hip', flip: -1, seed: .3 },
-    { x: 1.15, z: 4.6, size: 2.28, pose: 'pocket', flip: 1, seed: 2.5 },
-    { x: 1.92, z: 7.8, size: 2.2, pose: 'lean', flip: -1, seed: 4.8 },
-    { x: -.45, z: 10, size: 2.05, pose: 'walk', flip: 1, seed: 1.1 },
-    { x: .95, z: 14, size: 2.12, pose: 'hip', flip: 1, seed: 5.5 },
-    { x: -.1, z: 19, size: 2.25, pose: 'pocket', flip: -1, seed: 3.2 },
-    { x: 1.25, z: 27, size: 2.15, pose: 'walk', flip: -1, seed: 2.1 }
+    { x: -.38, z: 3.5, size: 2.12, pose: 'hip', design: 'muse', flip: -1, seed: .3 },
+    { x: 1.15, z: 4.6, size: 2.28, pose: 'pocket', design: 'rebel', flip: 1, seed: 2.5 },
+    { x: 1.92, z: 7.8, size: 2.2, pose: 'lean', design: 'executive', flip: -1, seed: 4.8 },
+    { x: -.45, z: 10, size: 2.05, pose: 'walk', design: 'courier', flip: 1, seed: 1.1 },
+    { x: .95, z: 14, size: 2.12, pose: 'hip', design: 'muse', flip: 1, seed: 5.5 },
+    { x: -.1, z: 19, size: 2.25, pose: 'pocket', design: 'executive', flip: -1, seed: 3.2 },
+    { x: 1.25, z: 27, size: 2.15, pose: 'walk', design: 'courier', flip: -1, seed: 2.1 }
   ];
 
   function project([x, y, z]) {
@@ -145,10 +145,12 @@
     const a=z+3.75, b=z+5.9, mid=(a+b)/2, gap=state.doors*.95;
     wall(x-.04,-1.27,1.32,a,b,'#17191e','#51545a');
     if(gap>.001){
-      wall(x-.05,-1.18,1.3,mid-gap,mid+gap,'#d1d0bd');
-      wall(x-.06,-.92,.25,mid-gap,mid+gap,'#555a59');
-      wall(x-.065,.26,1.29,mid-gap,mid+gap,'#878b82');
-      line([x-.07,-.95,mid+.25],[x-.07,1.15,mid+.25],'#e3e3d6',2);
+      wall(x-.05,-1.18,1.3,mid-gap,mid+gap,'#111820');
+      wall(x-.06,-1.12,-.97,mid-gap+.1,mid+gap-.1,'#eeefdb');
+      wall(x-.065,.93,1.29,mid-gap,mid+gap,'#6c7274');
+      wall(x-.066,.41,.77,mid-gap+.12,mid+gap-.12,'#650719');
+      wall(x-.068,.41,.48,mid-gap+.12,mid+gap-.12,'#b21630');
+      line([x-.07,-.94,mid+.7],[x-.07,1.14,mid+.7],'#b9c0c3',2);
       floor(2.06,2.48,mid-gap,mid+gap,'#e7e3c955');
     }
     const panel=(l,r)=>{
@@ -194,51 +196,17 @@
     }
   }
 
-  const head = new Path2D('M-17 30L-23 16L-19 9L-25 1L-11 3L-8-5L0-1L8-8L12-1L24-3L20 7L26 13L20 31L13 45L0 51L-12 44Z');
-  const mask = new Path2D('M-18 27L-5 29L0 34L6 28L20 23L15 35L5 37L0 41L-6 36L-15 35Z');
-  function shape(points,color){ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();ctx.fillStyle=color;ctx.fill();}
-  function limb(a,b,c,w1,w2,color){
-    // Two tapered segments keep limbs solid anatomical silhouettes, not strokes.
-    const segment=(p,q,pw,qw)=>{const angle=Math.atan2(q[1]-p[1],q[0]-p[0]);const dx=Math.sin(angle),dy=-Math.cos(angle);shape([[p[0]+dx*pw,p[1]+dy*pw],[q[0]+dx*qw,q[1]+dy*qw],[q[0]-dx*qw,q[1]-dy*qw],[p[0]-dx*pw,p[1]-dy*pw]],color);};
-    segment(a,b,w1,w2);segment(b,c,w2,w2*.65);ctx.fillStyle=color;ctx.beginPath();ctx.arc(b[0],b[1],w2,0,Math.PI*2);ctx.fill();
-  }
   function person(c,t,state){
     const walking=c.pose==='walk';
     const z=c.z+(walking?Math.sin(t*.22+c.seed)*2.1:0);
     const x=c.x+(walking?Math.sin(t*.22+c.seed)*.24:0);
-    const [sx,sy]=project([x,FLOOR,z]);const scale=focal*c.size/z/235;
-    const beat=t*(walking?3.4:1.8)+c.seed;
-    const sway=Math.sin(beat*.55)*(walking?.025:.022);
-    const breath=Math.sin(beat)*1.15;
-    const step=walking?Math.sin(beat)*21:0;
+    const [sx,sy]=project([x,FLOOR,z]);const scale=focal*c.size/z/320;
+    const sway=Math.sin(t*.8+c.seed)*(walking?.012:.009);
     ctx.save();ctx.translate(sx,sy);
-    // A projected black floor shadow stretches away from each figure.
-    ctx.save();ctx.transform(scale*.95,scale*.1,-scale*.35,scale*.18,0,0);ctx.fillStyle='#050508';ctx.beginPath();ctx.ellipse(12,5,45,27,0,0,Math.PI*2);ctx.fill();ctx.restore();
-    ctx.scale(scale*c.flip,scale);ctx.rotate(sway);ctx.translate(0,-228+breath);
-    const red=c.z>12?'#d8001b':RED, dark='#970015';
-    const leftFoot=[-16+step,222],rightFoot=[18-step,222];
-    if(c.pose==='hip') {leftFoot[0]=-24;rightFoot[0]=9;}
-    if(c.pose==='lean'){leftFoot[0]=-28;rightFoot[0]=14;}
-    limb([-11,124],[-15+step*.55,173-Math.abs(step)*.18],leftFoot,10,6.7,dark);
-    limb([11,124],[14-step*.5,172-Math.abs(step)*.12],rightFoot,10.5,6.5,red);
-    shape([[leftFoot[0]-6,215],[leftFoot[0]+5,218],[leftFoot[0]+10,227],[leftFoot[0]-12,228],[leftFoot[0]-12,223]],red);
-    shape([[rightFoot[0]-6,216],[rightFoot[0]+5,218],[rightFoot[0]+15,224],[rightFoot[0]+14,228],[rightFoot[0]-8,228]],red);
-    let leftElbow=[-29,91],leftHand=[-26-step*.45,123],rightElbow=[29,91],rightHand=[25+step*.45,121];
-    if(c.pose==='hip'){rightElbow=[46,83+Math.sin(beat)*1.2];rightHand=[20,111];leftElbow=[-28,93];leftHand=[-19,130];}
-    if(c.pose==='pocket'){leftElbow=[-36,91];leftHand=[-13,116];rightElbow=[32,94];rightHand=[15,113];}
-    if(c.pose==='lean'){leftElbow=[-36,76];leftHand=[-5,92];rightElbow=[35,89];rightHand=[-15,97];}
-    limb([-20,61],leftElbow,leftHand,8.5,6,red);
-    limb([20,61],rightElbow,rightHand,8.5,6,red);
-    // Neck, angular collar, jacket, hem and small silhouette details.
-    shape([[-8,43],[9,43],[11,56],[24,62],[19,102],[23,134],[5,136],[0,125],[-5,136],[-22,133],[-18,100],[-25,61],[-10,55]],red);
-    shape([[-10,54],[-2,72],[0,101],[5,74],[12,53],[7,65],[0,74],[-7,65]],dark);
-    if(c.pose==='hip')shape([[-19,115],[20,112],[31,146],[-26,144]],red);
-    ctx.save();ctx.translate(Math.sin(beat*.6)*1.2,-2);ctx.rotate(Math.sin(beat*.5)*.025);
-    ctx.fillStyle=red;ctx.fill(head);ctx.fillStyle='#fff';ctx.fill(mask);
-    shape([[-13,30],[-5,32],[-9,34]],'#111');shape([[8,30],[15,27],[12,32]],'#111');
-    ctx.restore();
-    // Jacket tails respond to the train's passing air.
-    if(state.speed>5){const flutter=Math.sin(t*11+c.seed)*clamp(state.speed/12,0,3);shape([[-20,111],[-24-flutter,140],[-6,134]],red);}
+    ctx.save();ctx.transform(scale*.9,scale*.06,-scale*.25,scale*.14,0,0);
+    ctx.fillStyle='#050508';ctx.beginPath();ctx.ellipse(10,5,49,23,0,0,Math.PI*2);ctx.fill();ctx.restore();
+    ctx.scale(scale*c.flip,scale);ctx.rotate(sway);ctx.translate(0,-319);
+    window.PersonaNPCs.draw(ctx,c.design,t,{walking,seed:c.seed,wind:state.speed>5?t*8+c.seed:0});
     ctx.restore();
   }
 
@@ -275,6 +243,8 @@
     vx=width*(width<761?.49:.62)+Math.sin(time*.19)*width*.005;
     vy=height*.39+Math.sin(time*.27)*height*.003;
     ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.fillStyle=INK;ctx.fillRect(0,0,width,height);
+    ctx.translate(width*.5,height*.5);ctx.rotate(-.022+Math.sin(time*.16)*.002);ctx.scale(1.035,1.035);ctx.translate(-width*.5,-height*.5);
     architecture(time,state);trainDraw(state,time);
     // Fog stays behind the foreground figures so their red silhouettes remain crisp.
     const fog=ctx.createRadialGradient(vx,vy,0,vx,vy,height*.27);fog.addColorStop(0,'#090a0ee6');fog.addColorStop(.25,'#090a0e99');fog.addColorStop(1,'#090a0e00');ctx.fillStyle=fog;ctx.fillRect(0,0,width,height);

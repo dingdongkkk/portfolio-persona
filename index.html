@@ -384,7 +384,9 @@ body.can-back .back-btn{display:block}
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="polish.css?v=1">
+<link rel="stylesheet" href="p5.css?v=23">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="at-start">
@@ -476,7 +478,10 @@ body.can-back .back-btn{display:block}
     <p class="eyebrow"><span class="tiny-star">✦</span> A DEVELOPER WITH A DIFFERENT PERSONA.</p>
     <h1 class="hero-title"><span>TAKE</span><span>YOUR</span><span class="outline-word">TIME<span class="title-star">★</span></span></h1>
     <div class="hero-caption"><span>CODE. CREATE. BREAK THE EXPECTED.</span></div>
-    <button class="start-button" id="startButton"><span>ENTER MY WORLD</span><b>↗</b></button>
+    <div class="start-actions">
+      <button class="start-button" id="startButton"><span>ENTER MY WORLD</span><b>↗</b></button>
+      <a class="jump-work" href="#work" data-route="proj">JUST HERE FOR THE WORK? <span>VIEW PROJECTS ↗</span></a>
+    </div>
     <p class="start-note">PRESS ENTER TO BEGIN <span>•</span> SOUND MAKES IT BETTER</p>
   </div>
   <div class="hero-stamp"><span>TAKE YOUR</span><strong>HEART.</strong><small>ANUBHAV KUMAR / PORTFOLIO</small></div>
@@ -486,15 +491,20 @@ body.can-back .back-btn{display:block}
 <!-- ============ INTRO ============ -->
 <section class="scene" id="intro" aria-label="Intro">
   <button class="skip" id="skipIntro">Skip ▸▸</button>
+  <div class="intro-halftone" aria-hidden="true"></div>
+  <div class="starburst intro-star" id="introStar" aria-hidden="true"></div>
+  <div class="intro-shards" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="panel-bg"></div>
   <div class="portrait illustrated-portrait" aria-hidden="true"></div>
+  <div class="intro-slash" aria-hidden="true"></div>
+  <div class="speedlines intro-speed" aria-hidden="true"></div>
   <div class="intro-name" id="introName"></div>
   <div class="intro-sub" id="introSub"></div>
   <div class="choices" id="choices" inert role="group" aria-label="Your answer">
     <button data-v="yes">Wanna know more about you</button>
     <button data-v="no">Nothing</button>
   </div>
-  <div class="dialog" id="dialog" role="button" tabindex="0" aria-live="polite">
+  <div class="dialog" id="dialog" role="button" tabindex="0" aria-label="Continue dialogue">
     <div class="tag" id="dlgTag"></div>
     <div class="box" id="dlgText"></div>
     <div class="next"></div>
@@ -557,7 +567,7 @@ body.can-back .back-btn{display:block}
   <div class="starburst" id="projStar"></div>
   <div class="project-art" aria-hidden="true"></div>
   <h2 class="scene-title" id="projTitle"></h2>
-  <div class="cards" id="cards"></div>
+  <div class="cards" id="cards"></div><div class="mission-index"><b>04</b><span>SELECTED BUILDS<br>FROM IDEA TO DEPLOYMENT</span></div>
   <div class="detail" id="detail" hidden></div>
 </section>
 
@@ -565,32 +575,28 @@ body.can-back .back-btn{display:block}
 <section class="scene" id="socials" aria-label="Socials">
   <div class="rays"></div><div class="dots"></div>
   <div class="blob"></div><div class="stripe"></div>
-  <div class="shop">CONTACT!</div>
+  <div class="shop">LET’S TALK<span>GOOD THINGS START WITH A CONVERSATION.</span></div>
   <div class="ccard" aria-hidden="true"><div class="inner">
     <div class="ctop" id="ccTop"></div>
     <div class="cmsg" id="ccMsg"></div>
     <svg class="hat"><use href="#hat"/></svg>
     <div class="csig" id="ccSig"></div>
   </div></div>
-  <div class="social-list" id="socialList"></div>
+  <div class="social-list" id="socialList"></div><div class="contact-footer"><span>GOT AN IDEA, OPPORTUNITY, OR A GOOD CHALLENGE?</span><button id="copyEmail">COPY EMAIL <b>⧉</b></button><span id="copyStatus" role="status"></span></div>
 </section>
 
 <!-- ============ GITHUB ============ -->
 <section class="scene" id="github" aria-label="GitHub">
   <div class="twinkle"></div>
-  <div class="inner">
-    <div class="line">
-      <span>My</span>
-      <svg class="cat" viewBox="0 0 120 120" aria-hidden="true">
-        <path fill="#111" stroke="#fff" stroke-width="3" d="M18 20l24 22h36l24-22 4 44c0 30-20 46-46 46S14 94 14 64z"/>
-        <path fill="#fff" d="M34 62c0-12 20-12 20 0v10H34zM66 62c0-12 20-12 20 0v10H66z"/>
-        <circle cx="44" cy="66" r="6" fill="#2fb4ff"/><circle cx="76" cy="66" r="6" fill="#2fb4ff"/>
-        <path fill="#fff" d="M50 84h20l-10 10z"/>
-        <path fill="#ffd400" stroke="#111" stroke-width="2" d="M36 104h48l-8 12H44z"/>
-      </svg>
-      <span>: <a class="gh" id="ghLink" target="_blank" rel="noopener"></a><span class="caret"></span></span>
-    </div>
+  <div class="code-profile">
+    <small>05 / OPEN SOURCE, OPEN BOOK</small>
+    <h2>BEHIND<br>THE <em>BUILD.</em></h2>
+    <p>Experiments, shipped products, and everything in between.</p>
+    <div class="repo-stats"><b>25+</b><span>PUBLIC REPOSITORIES</span></div>
+    <a class="gh" id="ghLink" target="_blank" rel="noopener"></a>
+    <span class="code-action">EXPLORE THE SOURCE ↗</span>
   </div>
+  <div class="code-art" aria-hidden="true"><span>{</span><b>BUILD.<br>BREAK.<br>REPEAT.</b><span>}</span></div>
   <p class="sub">press Enter to open · Esc to go back</p>
 </section>
 </div>
@@ -603,21 +609,48 @@ body.can-back .back-btn{display:block}
   <div class="command-art"></div>
   <div class="slash"></div>
   
-  <div class="sticker w" style="right:5vw;top:5vh;--r:6deg;--d:.5s;font-size:28px">MENU &amp; MAIN<small>COMMAND SELECT</small></div>
-  <div class="sticker" style="right:22vw;top:9vh;--r:-8deg;--d:.58s;font-size:20px">TAKE YOUR TIME</div>
-  <div class="sticker w" style="right:7vw;top:22vh;--r:-4deg;--d:.66s;font-family:Anton;font-size:64px" id="cmdNo">01</div>
-  <div class="label" id="cmdLabel"></div>
+  <div class="sticker w" style="right:5vw;top:5vh;--r:6deg;--d:.3s;font-size:28px">MENU &amp; MAIN<small>COMMAND SELECT</small></div>
+  <div class="sticker" style="right:22vw;top:9vh;--r:-8deg;--d:.36s;font-size:20px">TAKE YOUR TIME</div>
+  <div class="cmd-num" id="cmdNo">01</div>
+  <div class="speedlines cmd-speed"></div>
+  <div class="cmd-copy"><div class="label" id="cmdLabel"></div><div class="cmd-desc" id="cmdDesc"></div></div>
   <div class="word" id="cmdWord"></div>
 </div>
+<div id="gitx" aria-hidden="true">
+  <div class="gx-rain" id="gxRain"></div>
+  <div class="gx-brace gx-l">{</div><div class="gx-brace gx-r">}</div>
+  <div class="gx-label">05 / SOURCE CODE</div>
+  <div class="gx-term">
+    <div class="gx-bar"><i></i><i></i><i></i><span>~/anubhav — zsh</span></div>
+    <div class="gx-body" id="gxBody"></div>
+    <div class="gx-progress"><div class="gx-track"><b id="gxBar"></b></div><span id="gxPct">0%</span></div>
+  </div>
+  <div class="gx-stamp" id="gxStamp"></div>
+</div>
 <div id="wipe" aria-hidden="true"><span>TAKE YOUR TIME. ★</span></div>
-<div class="game-hud"><a href="#" id="homeBtn" aria-label="Return to main menu">AK<span>★</span></a><div id="sceneCrumb">THE PORTFOLIO</div></div>
+<div class="game-hud"><a href="#" id="homeBtn" aria-label="Return to main menu">AK<span>★</span></a><div id="sceneCrumb">THE PORTFOLIO</div><button id="mapBtn" aria-haspopup="dialog" aria-controls="siteMap" title="Quick navigation (M)">☷ <span>MAP</span></button></div>
 <button id="motionBtn" class="motion-btn" aria-pressed="false">MOTION ON</button>
 <div class="flash" id="flash"></div>
 <button class="back-btn" id="backBtn"><span>◂ Back</span></button>
 <button class="sound-btn" id="soundBtn" aria-pressed="true">♪ SFX ON</button>
 <div class="hint" aria-hidden="true"><span><b>↑↓</b>Select</span><span><b>⏎</b>Confirm</span><span><b>Esc</b>Back</span></div>
 
-<script src="station.js"></script>
+<dialog id="siteMap" aria-labelledby="mapTitle">
+  <div class="map-top"><span>FAST TRAVEL / CHOOSE A DESTINATION</span><button id="closeMap" aria-label="Close navigation">✕</button></div>
+  <h2 id="mapTitle">YOUR NEXT <em>MOVE.</em></h2>
+  <nav aria-label="Quick navigation">
+    <a href="#menu" data-route="menu"><small>00</small><span>THE UNDERGROUND</span><b>↗</b></a>
+    <a href="#about" data-route="about"><small>01</small><span>ABOUT ME</span><b>↗</b></a>
+    <a href="#work" data-route="proj"><small>02</small><span>SELECTED WORK</span><b>↗</b></a>
+    <a href="#experience" data-route="exp"><small>03</small><span>EXPERIENCE</span><b>↗</b></a>
+    <a href="#contact" data-route="socials"><small>04</small><span>GET IN TOUCH</span><b>↗</b></a>
+    <a href="#code" data-route="github"><small>05</small><span>THE SOURCE CODE</span><b>↗</b></a>
+  </nav>
+  <div class="map-bottom"><span>ANUBHAV KUMAR / FULL-STACK DEVELOPER</span><a href="resume.pdf" target="_blank" rel="noopener">RÉSUMÉ ↗</a></div>
+</dialog>
+<div class="sr-only" id="announcer" role="status" aria-live="polite"></div>
+<script src="npc-designs.js?v=2"></script>
+<script src="station.js?v=3"></script>
 <script>
 /* =====================================================================
    ✏️  EDIT YOUR INFO HERE — everything on the site comes from this object
@@ -761,11 +794,12 @@ const FULL = ME.fullName || ME.name;
 document.title = `${FULL} — ${ME.title}`;
 
 
-$('#introName').textContent = ME.name.toUpperCase();
+$('#introName').innerHTML = [...ME.name.toUpperCase()].map((ch, i) => `<span style="--i:${i}" aria-hidden="true">${esc(ch)}</span>`).join('');
+$('#introName').setAttribute('aria-label', ME.name);
 $('#introSub').textContent = ME.title.toUpperCase();
 $('#tagline').textContent = `${ME.title} // ${ME.tagline}`;
 $('#snsTitle').innerHTML = ransom('SNS', 3);
-['#cmdStar','#projStar'].forEach(s => $(s).innerHTML = starBurst());
+['#cmdStar','#projStar','#introStar'].forEach(s => $(s).innerHTML = starBurst());
 $('#aboutTitle').innerHTML = '<small>01 / THE PERSON BEHIND THE CODE</small>ABOUT <em>ME.</em>';
 $('#expTitle').innerHTML = '<small>03 / PROGRESS SAVED</small>EXPERIENCE<em>.</em>';
 $('#projTitle').innerHTML = '<small>02 / SELECT A MISSION</small>SELECTED <em>WORK.</em>';
@@ -782,19 +816,24 @@ $('#idcard').innerHTML = `
   ${ME.resume ? `<a class="resume" href="${esc(ME.resume)}" target="_blank" rel="noopener">Résumé ▸</a>` : ''}`;
 const ed = ME.education;
 $('#aboutRight').innerHTML = `
-  <div class="panel"><h3>Profile</h3>${esc(ME.about)}</div>
+  <div class="panel"><h3>Profile</h3><p>${esc(ME.about)}</p></div>
   <div class="panel"><h3>Education</h3>${esc(ed.degree)} — ${esc(ed.school)}<br>${esc(ed.years)}${ed.minor ? `<br>Minor: ${esc(ed.minor)}` : ''}</div>
   <div class="panel"><h3>Arsenal</h3><div class="skills">${ME.skills.map((s, i) => `<span style="--r:${(i % 3 - 1) * 3}deg">${esc(s)}</span>`).join('')}</div></div>`;
 $('#saves').innerHTML = ME.experience.map((x, i) => `
   <button class="slot">
     <span class="num">${String(i + 1).padStart(2, '0')}</span>
-    <span><div class="role">${esc(x.role)}</div><div class="when">${esc(x.when)}</div><div class="note">${esc(x.note)}</div></span>
+    <span><div class="role">${esc(x.role)}</div><div class="when"><strong>${esc(x.org)}</strong><span>${esc(x.when)}</span></div><div class="note">${esc(x.note)}</div></span>
     <span class="org">— ${esc(x.org)}</span><span class="disc"></span>
   </button>`).join('');
 $('#cards').innerHTML = ME.projects.map((p,i) => `<button class="card"><small>MISSION / 0${i+1}</small><span>${esc(p.name)}</span><b>↗</b></button>`).join('');
 $('#socialList').innerHTML = ME.socials.map(s => `<a href="${esc(s.url)}"${/^mailto:/.test(s.url) ? '' : ' target="_blank" rel="noopener"'}><span>${esc(s.label)}</span><span>${esc(s.handle)}</span></a>`).join('');
 const ghUrl = /^https?:/.test(ME.github) ? ME.github : 'https://' + ME.github;
 $('#ghLink').href = ghUrl;
+$('#gxStamp').innerHTML = ransom('ACCESS GRANTED', 7, 'wwr');
+$('#gxRain').innerHTML = Array.from({ length: 18 }, (_, i) => {
+  const chars = Array.from({ length: 30 }, () => '01{}</>;=$#'[Math.floor(Math.random() * 11)]).join('<br>');
+  return `<span style="left:${(i / 18 * 100 + Math.random() * 2).toFixed(1)}%;animation-duration:${(1.3 + Math.random() * 1.5).toFixed(2)}s;animation-delay:-${(Math.random() * 2).toFixed(2)}s">${chars}</span>`;
+}).join('');
 
 // The independent station renderer runs only while its scenes are visible.
 const Subway = { run(on) { $('#station').classList.toggle('visible', on); window.StationRenderer?.setActive(on); } };
@@ -802,7 +841,12 @@ const Subway = { run(on) { $('#station').classList.toggle('visible', on); window
 // ---------- scene engine ----------
 let current = 'start', busy = false;
 const stack = [], lists = {};
-function restartAnims(el){ el.querySelectorAll('*').forEach(n => { if (getComputedStyle(n).animationName !== 'none'){ n.style.animation = 'none'; void n.offsetWidth; n.style.animation = ''; } }); }
+function restartAnims(el){
+  const animated = [...el.querySelectorAll('*')].filter(n => getComputedStyle(n).animationName !== 'none');
+  animated.forEach(n => n.style.animation = 'none');
+  void el.offsetWidth;
+  animated.forEach(n => n.style.animation = '');
+}
 function show(id){
   $$('.scene').forEach(s => s.classList.toggle('active', s.id === id));
   current = id;
@@ -816,6 +860,7 @@ function show(id){
   restartAnims($('#' + id));
   Subway.run(id === 'menu' || id === 'sns');
   enter[id]?.();
+  document.dispatchEvent(new CustomEvent('portfolio:scene', {detail:{id}}));
 }
 function wipeTo(id, push = true){
   if (busy) return;
@@ -830,18 +875,84 @@ function back(){
   if (busy || !stack.length) return;
   sfx('back'); wipeTo(stack.pop(), false);
 }
+// Transition cards (COMMAND, the intro cut-in) hold long enough to read; click, Enter or Space skips ahead.
+let advanceHold = null, advanceReadyAt = 0;
+function holdThen(ms, fn){
+  let done = false;
+  const go = () => { if (done) return; done = true; clearTimeout(t); advanceHold = null; fn(); };
+  const t = setTimeout(go, ms);
+  advanceHold = go;
+  advanceReadyAt = performance.now() + 450;   // the key/click that opened the card must not also skip it
+}
+function skipHold(e){
+  if (!advanceHold || performance.now() < advanceReadyAt) return;
+  if (e.type === 'keydown' && (e.repeat || !['Enter', ' '].includes(e.key))) return;
+  e.preventDefault(); e.stopPropagation(); advanceHold();
+}
+addEventListener('keydown', skipHold, true);
+addEventListener('pointerdown', skipHold, true);
+
+const CMD_DESC = {
+  sns: 'The dossier — who I am and where I’m headed.',
+  about: 'Meet the developer. Discover the story.',
+  proj: 'Four missions. Real problems. Shipped solutions.',
+  exp: 'Every chapter is a new level.',
+  socials: 'Good things start with a conversation.',
+  github: 'Behind the scenes. Into the source.'
+};
 function command(label, target, n){
+  if (target === 'github') return gitTransition();
   if (busy) return;
   busy = true;
   $('#cmdLabel').textContent = label;
-  $('#cmdWord').innerHTML = ransom('COMMAND', label.length);
+  $('#cmdDesc').textContent = CMD_DESC[target] || '';
+  $('#cmdWord').innerHTML = ransom('COMMAND', label.length, 'wwr');
   $('#cmdNo').textContent = String(n).padStart(2, '0');
   const c = $('#cmd');
   c.classList.remove('on'); void c.offsetWidth; c.classList.add('on');
   restartAnims(c);
   setTimeout(() => { if (!reducedMotion()) { sfx('slam'); shake(); } }, 220);
-  setTimeout(() => { busy = false; wipeTo(target); }, reducedMotion() ? 40 : 720);
-  setTimeout(() => c.classList.remove('on'), reducedMotion() ? 80 : 1100);
+  holdThen(reducedMotion() ? 40 : 1100, () => {
+    busy = false; wipeTo(target);
+    setTimeout(() => c.classList.remove('on'), reducedMotion() ? 40 : 330);
+  });
+}
+// GitHub gets its own transition: a terminal "git clone" that ends in an ACCESS GRANTED stamp.
+function gitTransition(){
+  if (busy) return;
+  busy = true;
+  const g = $('#gitx'), body = $('#gxBody'), bar = $('#gxBar'), pct = $('#gxPct');
+  const timers = [], at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const row = (cls, html) => { const d = document.createElement('div'); d.className = cls; d.innerHTML = html; body.appendChild(d); return d; };
+  body.innerHTML = ''; bar.style.width = '0%'; pct.textContent = '0%';
+  g.classList.remove('on', 'granted'); void g.offsetWidth; g.classList.add('on');
+  restartAnims(g); sfx('swish');
+  const cmd = `git clone ${ghUrl}.git`;
+  at(120, () => {
+    const s = row('gx-cmd', '<em>$</em> <span></span><i class="gx-caret"></i>').querySelector('span');
+    let n = 0; const step = Math.max(1, Math.ceil(cmd.length / 14));
+    const t = setInterval(() => { n = Math.min(cmd.length, n + step); s.textContent = cmd.slice(0, n); sfx('type'); if (n >= cmd.length) clearInterval(t); }, 22);
+    timers.push(t);
+  });
+  at(460, () => row('gx-out', `Cloning into '${esc(ME.name.toLowerCase())}'...`));
+  at(560, () => row('gx-out', 'remote: Enumerating objects — 25+ public repositories'));
+  at(660, () => row('gx-out', 'Resolving deltas: 100%, all shipped.'));
+  at(460, () => {
+    const p0 = performance.now();
+    const t = setInterval(() => {
+      const k = Math.min(1, (performance.now() - p0) / 480);
+      bar.style.width = (k * 100) + '%'; pct.textContent = Math.round(k * 100) + '%';
+      if (k >= 1) clearInterval(t);
+    }, 30);
+    timers.push(t);
+  });
+  at(950, () => { g.classList.add('granted'); sfx('slam'); if (!reducedMotion()) { shake(); flash(); } });
+  holdThen(reducedMotion() ? 40 : 1500, () => {
+    timers.forEach(clearTimeout);
+    stack.push(current); show('github');          // the page starts its entrance underneath…
+    g.classList.add('out'); sfx('swish');          // …while the terminal slashes away on top of it
+    setTimeout(() => { g.classList.remove('on', 'granted', 'out'); busy = false; }, reducedMotion() ? 0 : 480);
+  });
 }
 function confirmFx(el){
   sfx('ok');
@@ -884,11 +995,12 @@ makeList('menu', $$('#menuList button'), (i, el) => { confirmFx(el); command(el.
   d.classList.remove('swap'); void d.offsetWidth; d.classList.add('swap');
 });
 makeList('sns', $$('#snsList button'), (i, el) => { confirmFx(el); command(el.textContent, el.dataset.cmd, i + 1); });
-makeList('exp', $$('.slot'), () => {});
+makeList('exp', $$('.slot'), () => {}, i => { $$('.slot').forEach((slot,k)=>slot.setAttribute('aria-expanded',String(k===i))); });
 makeList('proj', $$('.card'), () => { confirmFx($('.card.sel')); $('#detail a')?.focus({preventScroll:true}); }, i => {
   const p = ME.projects[i], d = $('#detail');
   d.hidden = false;
   d.innerHTML = `<small class="badge">${esc(p.badge || '')}</small><h4>${esc(p.name)}</h4><p>${esc(p.desc)}</p><div class="tech">${p.tech.map(t => `<span>${esc(t)}</span>`).join('')}</div>${p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">Open live ▸</a>` : ''}${p.code ? `<a href="${esc(p.code)}" target="_blank" rel="noopener">Source ▸</a>` : ''}`;
+  window.enrichProject?.(i);
   d.classList.remove('pop'); void d.offsetWidth; d.classList.add('pop');
 });
 makeList('socials', $$('#socialList a'), (i, el) => el.click());
@@ -897,6 +1009,7 @@ makeList('socials', $$('#socialList a'), (i, el) => el.click());
 let typeTimer;
 function typeInto(el, text, speed = 28, done){
   clearInterval(typeTimer);
+  if (reducedMotion()) { el.textContent=text;done?.();return ()=>{}; }
   let n = 0; el.textContent = '';
   typeTimer = setInterval(() => {
     el.textContent = text.slice(0, ++n);
@@ -909,11 +1022,13 @@ function typeInto(el, text, speed = 28, done){
 // ---------- start ----------
 function begin(){
   if (current !== 'start' || busy) return;
+  introDone=false;line=-1;typing=false;choosing=false;skipTyping=null;
+  $('#intro').classList.remove('on','choice');$('#choices').inert=true;clearInterval(typeTimer);
   document.body.classList.add('started');
   sfx('ok'); flash();
   wipeTo('intro', false);
   setTimeout(() => { $('#intro').classList.add('on'); }, 450);
-  setTimeout(() => { if (line === -1) nextLine(); }, 1100);
+  setTimeout(() => { if (line === -1) nextLine(); }, 1600);
 }
 $('#startButton').addEventListener('click', begin);
 
@@ -935,6 +1050,7 @@ function nextLine(){
   dlg.classList.remove('done'); typing = true;
   skipTyping = typeInto($('#dlgText'), L.say, 28, () => {
     typing = false; dlg.classList.add('done');
+    $('#announcer').textContent = L.say;
     if (L.choice){ $('#choices').inert = false; choosing = true; $('#intro').classList.add('choice'); lists.intro.sel(0, true); }
   });
 }
@@ -963,21 +1079,24 @@ function cutIn(){
   ec.classList.add('on'); restartAnims(ec);
   sfx('slam'); shake(); flash();
   // 2) name band
-  setTimeout(() => {
+  const band = setTimeout(() => {
     ec.classList.remove('on');
     const c = $('#cutin'), band = $('#band');
     band.style.setProperty('--jag', jagged(18, 5));
-    $('#cutTxt').innerHTML = ransom(ME.name.toUpperCase() + '!', 42);
+    $('#cutTxt').innerHTML = ransom(ME.name.toUpperCase() + '!', 42, 'wwr');   // white/red tiles only: black ones vanish on the black band
     c.classList.add('on'); restartAnims(c); sfx('slam'); shake();
-  }, 550);
-  setTimeout(() => { wipeTo('menu', false); }, 1200);
-  setTimeout(() => $('#cutin').classList.remove('on'), 1600);
+  }, 700);
+  holdThen(1900, () => {
+    clearTimeout(band);
+    wipeTo('menu', false);
+    setTimeout(() => { ec.classList.remove('on'); $('#cutin').classList.remove('on'); }, 330);
+  });
 }
 $('#skipIntro').addEventListener('click', e => { e.stopPropagation(); cutIn(); });
 
 // ---------- global keys ----------
 document.addEventListener('keydown', e => {
-  if (e.metaKey || e.ctrlKey || e.altKey || e.key === 'Tab') return;
+  if ($('#siteMap').open || e.metaKey || e.ctrlKey || e.altKey || e.key === 'Tab') return;
   if (current === 'start'){ if (['Enter',' '].includes(e.key) && !e.target.closest('button')){ e.preventDefault(); begin(); } return; }
   if (busy) return;
   if (e.target.closest('button, a') && ['Enter',' '].includes(e.key)) return;
@@ -1000,6 +1119,7 @@ $('#soundBtn').addEventListener('click', e => {
   e.currentTarget.setAttribute('aria-pressed', sfxOn);
 });
 </script>
-<script src="enhancements.js"></script>
+<script src="enhancements.js?v=3"></script>
+<script src="portfolio.js?v=1"></script>
 </body>
 </html>
